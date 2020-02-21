@@ -8,11 +8,14 @@ function getRandomInt(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-var seed = 93285;
-getRandomInt = function (min, max) {
-	let s = Math.sin(seed) * 10000;
-	return Math.floor(min + (s - Math.floor(s)) * (max - min + 1));
+function randomIntFn(seed) {
+	return function (min, max) {
+		seed = Math.sin(seed) * 10000;
+		return Math.floor(min + (seed - Math.floor(seed)) * (max - min + 1));
+	};
 }
+
+getRandomInt = randomIntFn(93256);
 
 var paletaEnSecuencia = true;
 var indiceColor = 0;
